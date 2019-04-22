@@ -2,12 +2,19 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const User= require('./models/user')
+const session = require('express-session')
+const passport = require('./auth/passport')
 
 app.use(express.json() )
 app.use(express.urlencoded({extended:true}))
 app.set('view engine','hbs')
 
+app.use(session({
+    secret:"somesecret"
+}))
 
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/',require('./routes/root'))
 app.use('/',require('./routes/user'))

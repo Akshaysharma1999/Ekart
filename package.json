@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "hbs": "^4.0.4",
-    "mongoose": "^5.5.2"
+    "mongoose": "^5.5.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
