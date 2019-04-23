@@ -4,8 +4,8 @@ const Users =  require('../models/user')
 
 passport.serializeUser((user,done)=>{done(null,user._id)})
 
-passport.deserializeUser((_id,done)=>{
-    Users.findById(_id , (err,user)=>{
+passport.deserializeUser((id,done)=>{
+    Users.findById(id , (err,user)=>{
 
         if(!user)
         {
@@ -23,6 +23,7 @@ passport.use(new LocalStrategy({
   },(email,password,done)=>{
 
     Users.findOne({email : email},(err,user)=>{
+
         if(!user){return done(null,false,{message:"no such user -p"})}
 
         

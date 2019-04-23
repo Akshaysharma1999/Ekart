@@ -5,16 +5,25 @@ const User= require('./models/user')
 const session = require('express-session')
 const passport = require('./auth/passport')
 
+
 app.use(express.json() )
 app.use(express.urlencoded({extended:true}))
 app.set('view engine','hbs')
 
 app.use(session({
-    secret:"somesecret"
+    secret:"somesecret",
+    saveUninitialized:true,
+    resave:true
+    
 }))
 
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use((req,res,next)=>{
+    res.locals.user = req.user
+    next()
+})
 
 app.use('/',require('./routes/root'))
 app.use('/',require('./routes/user'))
