@@ -25,14 +25,6 @@ route.post(('/add-categories'), (req, res, next) => {
     })  
 })
 
-route.get('/products/:id',(req,res,next)=>{
-    // console.log(req.params.id)
-    Categories.findOne({_id : req.params.id},(err,category)=>{
-        if(err) return next(err)
-        console.log(category)
-        res.send("hereee")
-    })
-    
-})
+
 
 module.exports = route

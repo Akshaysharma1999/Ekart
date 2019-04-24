@@ -35,6 +35,7 @@ app.use('/',(req,res,next)=>{
 app.use('/',require('./routes/root'))
 app.use('/',require('./routes/user'))
 app.use('/',require('./routes/admin'))
+app.use('/faker',require('./faker/api'))
 
 
 mongoose.connect('mongodb+srv://ekart:ekart@cluster0-0t2s9.mongodb.net/test?retryWrites=true',{useNewUrlParser: true},(err)=>{
