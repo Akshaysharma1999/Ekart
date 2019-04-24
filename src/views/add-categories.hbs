@@ -77,7 +77,6 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-
                                 
                                 {{#each categories}}
                                     <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
@@ -95,15 +94,14 @@
     <br>
     <br>
 
-
     {{!-- main  --}}
     <div class="container-fluid" style="padding:230px;">
         <center>
-            <h1>Edit Profile</h1>
-            <form action="/edit-profile" method="POST">
+            <h1>Add Categories</h1>
+            <form action="/add-categories" method="POST">
 
-                <div><input placeholder="name" value="{{user.name}}" type="text" name="name"></div>
-                <div><input placeholder="address" value="{{user.address}}" type="text" name="address"></div>
+                <div><input placeholder="name" type="text" name="name"></div>
+
                 <div><input type="submit"></div>
 
             </form>

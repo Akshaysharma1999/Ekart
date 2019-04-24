@@ -21,6 +21,7 @@ route.get('/profile',(req,res,next)=>{
     User.findOne({_id:req.body._id},(err,user)=>{
         if(err) return next(err)
 
+        console.log(user)
         res.render('profile',{user:req.user})
     })
 })
@@ -29,7 +30,7 @@ route.post('/login', passport.authenticate('local' , { failureRedirect: '/login'
 
 route.post('/signup',(req,res,next)=>{
    
-    const user = new User();
+    const user = new User()
     user.email = req.body.email
     user.name = req.body.name
     user.address = req.body.address

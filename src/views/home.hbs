@@ -20,7 +20,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-    
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -57,7 +57,7 @@
 
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="/logout">Logout</a>
-               <a class="dropdown-item" href="/profile">Dashboard</a>
+                <a class="dropdown-item" href="/profile">Dashboard</a>
 
               </div>
             </div>
@@ -77,6 +77,26 @@
 
           </li>
 
+          <li class="nav-item active">
+
+            <div class="dropdown show mx-4">
+              <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Categories
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+  
+                                {{#each categories}}
+                                    <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
+                                {{/each}}
+
+
+              </div>
+            </div>
+
+          </li>
 
         </ul>
       </div>
@@ -84,6 +104,7 @@
   </nav>
   <br>
   <br>
+
 
   <!-- Page Content -->
   <div class="container">
