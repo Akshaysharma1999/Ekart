@@ -51,14 +51,8 @@ route.post('/signup',(req,res,next)=>{
                     return next(err)               
                 }
                 console.log("added succesfully")
-                req.logIn(user,(err)=>{
-                    if(err) return next(err)
-
-                    res.redirect('/profile')
-               
-
-                })
-                
+                res.redirect('/login')
+                        
             })
 
         }
