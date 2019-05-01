@@ -1,5 +1,6 @@
 const route = require('express').Router()
 const User = require('../models/user')
+const Cart = require('../models/cart')
 const passport = require('../auth/passport')
 
 route.get('/login',(req,res)=>{
@@ -51,7 +52,16 @@ route.post('/signup',(req,res,next)=>{
                     return next(err)               
                 }
                 console.log("added succesfully")
-                res.redirect('/login')
+
+                const cart = new Cart()
+                cart.user = user._id
+                cart.save((err)=>{
+                    if(err) return next(err)
+                    
+                    res.redirect('/login')
+                })
+
+                
                         
             })
 

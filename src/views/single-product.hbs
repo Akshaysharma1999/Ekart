@@ -36,6 +36,10 @@
           </li>
 
           <li class="nav-item active">
+            <div><a class="nav-link" href="/">CART</a></div>
+          </li>
+
+          <li class="nav-item active">
 
             {{#if user.name}}
             <div class="dropdown show mx-4">
@@ -77,10 +81,10 @@
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
 
-                 
-                                {{#each categories}}
-                                    <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
-                                {{/each}}
+
+                {{#each categories}}
+                <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
+                {{/each}}
 
               </div>
             </div>
@@ -108,13 +112,42 @@
             <h5>Price: </h5> {{product.price}}
           </div>
           <div class="my-1">
-            
+
           </div>
         </p>
-       
+
       </div>
     </div>
+
+    <form action="/cart" method="post">
+      qty
+      <div class="mx-2 btn-group" role="group">
+        <input type="hidden" name="quantity" value="1"></input>
+        <button type="button" name="minus" class="btn btn-secondary">-</button>
+        <button type="button" name="total" class="btn btn-primary">1</button>
+        <button type="button" name="plus" class="btn btn-secondary">+</button>
+      </div>
+      <div>
+        <input type="hidden" name="product_id" value="{{product._id}}"></input>
+        <input type="hidden" name="price" value="{{product.price}}"></input>
+        <input type="text" name="product_id" value="{{product.name}}"></input>
+        <input type="text" name="price" value="{{product.price}}"></input>
+      </div>
+
+      {{#if user}}
+      <button type="submit" class="btn btn-success">ADD To Cart</button>
+      {{else}}
+      <button class="btn btn-danger"><a href="/signup" style="color:white;">Signup first</a> </button>
+      {{/if}}
+
+
+
+
+    </form>
+
   </div>
+
+
 
 
 

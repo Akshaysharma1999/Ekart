@@ -45,7 +45,9 @@
                     <li class="nav-item active">
                         <div><a class="nav-link" href="/">Home</a></div>
                     </li>
-
+                    <li class="nav-item active">
+                        <div><a class="nav-link" href="/">CART</a></div>
+                    </li>
                     <li class="nav-item active">
 
                         {{#if user.name}}
@@ -154,30 +156,34 @@
 
                 <div class="row">
 
-                    {{#each products}}  
-                   
-                         <div class="col-lg-4 col-md-6 mb-4">
+                    {{#each products}}
+
+                    <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top" src="{{this.image}}" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="/product/{{this._id}}">{{this.name}}</a>
                                 </h4>
-                                 <h4 class="card-title">
+                                <h4 class="card-title">
                                     <a href="#">{{this.category.name}}</a>
                                 </h4>
                                 <h5>{{this.price}}</h5>
                                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
                                     numquam aspernatur!
                                 </p>
+
+
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                               
                             </div>
+
                         </div>
-                        </div>
-                    
-                   
+                    </div>
+
+
 
                     {{/each}}
 
