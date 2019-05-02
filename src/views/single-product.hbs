@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,6 +17,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
+ <script src="/js/script.js"></script>
+   
 
 </head>
 
@@ -119,19 +123,19 @@
       </div>
     </div>
 
-    <form action="/cart" method="post">
+    <form action="/product/{{product._id}}" method="post">
       qty
       <div class="mx-2 btn-group" role="group">
-        <input type="hidden" name="quantity" value="1"></input>
-        <button type="button" name="minus" class="btn btn-secondary">-</button>
-        <button type="button" name="total" class="btn btn-primary">1</button>
-        <button type="button" name="plus" class="btn btn-secondary">+</button>
+        <input type="hidden" id = "quantity" name="quantity" value="1"></input>
+        <button type="button" id="minus" class="btn btn-secondary">-</button>
+        <button type="button" id ="total" class="btn btn-primary">1</button>
+        <button type="button" id="plus" name="plus" class="btn btn-secondary">+</button>
       </div>
       <div>
-        <input type="hidden" name="product_id" value="{{product._id}}"></input>
-        <input type="hidden" name="price" value="{{product.price}}"></input>
-        <input type="text" name="product_id" value="{{product.name}}"></input>
-        <input type="text" name="price" value="{{product.price}}"></input>
+        <input type="hidden" id="product_id" name="product_id" value="{{product._id}}"></input>
+        <input type="hidden" id="base_price" name="base_price" value="{{product.price}}"></input>
+        <input type="text" id="product_name" name="product_name" value="{{product.name}}"></input>
+        <input type="text" id="price" name="price" value="{{product.price}}"></input>
       </div>
 
       {{#if user}}
@@ -140,16 +144,13 @@
       <button class="btn btn-danger"><a href="/signup" style="color:white;">Signup first</a> </button>
       {{/if}}
 
-
-
-
     </form>
 
   </div>
-
-
-
-
+  
+  {{!--  --}}
+  
+  
 
   {{!-- footer --}}
 

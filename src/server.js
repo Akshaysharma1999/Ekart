@@ -7,10 +7,12 @@ const session = require('express-session')
 const passport = require('./auth/passport')
 const categories = require('./models/category')
 
+app.use('/',express.static(__dirname + "/public"))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'hbs')
+
 
 app.use(session({
     secret: "somesecret",
@@ -36,7 +38,7 @@ app.use('/', (req, res, next) => {
     // console.log(req.user)
     res.locals.cart = 0
     if (req.user) {
-        const total = 0
+        let total = 0
         Cart.findOne({ user: req.user }, (err, cart) => {
             if (err) next(err)
 
