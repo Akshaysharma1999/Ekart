@@ -5,7 +5,7 @@ const Cart = new Schema({
     user:{type:Schema.Types.ObjectId,ref:'User'},
     items: [{
        item : {
-           type:Schema.Types.ObjectId,ref:'Product'
+           type:Schema.Types.ObjectId,ref:'Products'
         },
         quantity:{type:Number,default:'1'},
         price :{type:Number,default:'0'}

@@ -23,6 +23,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+
 app.use('/', (req, res, next) => {
     res.locals.user = req.user;
     next()
@@ -34,26 +35,35 @@ app.use('/', (req, res, next) => {
         next()
     })
 })
+
 app.use('/', (req, res, next) => {
-    // console.log(req.user)
-    res.locals.cart = 0
+    
+    res.locals.tq = 0 
+    
     if (req.user) {
         let total = 0
-        Cart.findOne({ user: req.user }, (err, cart) => {
+        
+        Cart.findOne({ user: req.user._id }, (err, user_cart) => {
             if (err) next(err)
 
-            if (cart) {
-                for (i = 0; i < cart.items.length; i++) {
-                    total += cart.items[i].quantity
+            // console.log('akshaycart')
+
+            if (user_cart) {
+                for (i = 0; i < user_cart.items.length; i++) {
+                    total += user_cart.items[i].quantity
                 }
-                res.locals.cart = total
+                res.locals.tq = total
             }
             else {
-                res.locals.cart = 0
+                res.locals.tq = 0
             }
+         
+             console.log(res.locals.tq)
         })
     }
     next()
+    
+   
 })
 
 
