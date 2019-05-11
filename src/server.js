@@ -40,27 +40,27 @@ app.use('/', (req, res, next) => {
     
     res.locals.tq = 0 
     
-    if (req.user) {
-        let total = 0
+    // if (req.user) {
+    //     let total = 0
         
-        Cart.findOne({ user: req.user._id }, (err, user_cart) => {
-            if (err) next(err)
+    //     Cart.findOne({ user: req.user._id }, (err, user_cart) => {
+    //         if (err) next(err)
 
-            // console.log('akshaycart')
+    //         // console.log('akshaycart')
 
-            if (user_cart) {
-                for (i = 0; i < user_cart.items.length; i++) {
-                    total += user_cart.items[i].quantity
-                }
-                res.locals.tq = total
-            }
-            else {
-                res.locals.tq = 0
-            }
+    //         if (user_cart) {
+    //             for (i = 0; i < user_cart.items.length; i++) {
+    //                 total += user_cart.items[i].quantity
+    //             }
+    //             res.locals.tq = total
+    //         }
+    //         else {
+    //             res.locals.tq = 0
+    //         }
          
-             console.log(res.locals.tq)
-        })
-    }
+    //          console.log(res.locals.tq)
+    //     })
+    // }
     next()
     
    

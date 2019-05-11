@@ -114,6 +114,14 @@
                             <div class="my-1">
                                 <h5>Price: </h5> {{this.item.price}}
                                 <h5>Qty: </h5> {{this.quantity}}
+
+                                <form action="/remove" method="post">
+                                    <input type="hidden" name="item" value="{{this.item.id}}">
+                                    <input type="hidden" name="price" value="{{this.price}}">
+                                    <input type="hidden" name="quantity" value="{{this.quantity}}">
+                                                                        
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
                                                                          
                     </div>
                             <div class="my-1">

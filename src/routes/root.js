@@ -35,6 +35,9 @@ route.post('/product/:id', (req, res, next) => {
     Cart.findOne({ user: req.user._id }, (err, cart) => {
         if (err) next(err)
 
+        console.log('here')
+        console.log(cart)
+
         cart.items.push(
             {
                 item: req.body.product_id,
@@ -59,15 +62,56 @@ route.get('/cart', (req, res, next) => {
 
     console.log(req.user)
     Cart.findOne({ user: req.user._id })
-    .populate('items.item')
-    .exec((err,user_cart)=>{
-        if(err) next(err)
+        .populate('items.item')
+        .exec((err, user_cart) => {
+            if (err) next(err)
 
-        // console.log(user_cart)
-        res.render('cart',{user_cart:user_cart})
-    })
+            // console.log(user_cart)
+            res.render('cart', { user_cart: user_cart })
+        })
 
 
 })
 
-module.exports = route
+route.post('/remove', (req, res, next) => {
+    // res.send('here')
+    // console.log(req.body)
+
+    Cart.update(
+        { user: req.user._id },
+        { $pull: { items: { item: req.body.item } } },
+        { safe: true },
+        function removeConnectionsCB(err, obj) {
+            // console.log(obj)
+            Cart.findOne({ user: req.user._id }, (err, cart) => {
+                cart.total = (cart.total - parseFloat(req.body.price))
+                cart.save((err) => {
+                    if (err) return next(err)
+
+                    res.redirect('/cart')
+                })
+
+
+            })
+        })
+    })
+        
+            // Cart.findOne({ user: req.user._id }, (err, cart) => {
+
+            //         // console.log(cart)
+            //     // res.redirect('/cart')
+            //      cart.items = cart.items.filter((items)=>{
+            //          return ( items._id != req.body.item )
+            //      })
+            // cart.pull('')
+
+            //     // cart.total = (cart.total - parseFloat(req.body.price))
+            //     cart.save((err) => {
+            //         if (err) return next(err)
+
+            //         res.redirect('/cart')
+            //     })
+            // })
+        // })
+
+    module.exports = route
