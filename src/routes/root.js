@@ -2,6 +2,7 @@ const route = require('express').Router()
 const User = require('../models/user')
 const Products = require('../models/product')
 const Cart = require('../models/cart')
+const stripe = require('stripe')('sk_test_MKfrL0egKWHteBeC3tyv6eiG00k1N52GEY')
 
 route.get(('/'), (req, res) => {
     res.render('home')
@@ -94,8 +95,8 @@ route.post('/remove', (req, res, next) => {
 
             })
         })
-    })
-        
+})
+
             // Cart.findOne({ user: req.user._id }, (err, cart) => {
 
             //         // console.log(cart)
@@ -113,5 +114,26 @@ route.post('/remove', (req, res, next) => {
             //     })
             // })
         // })
+
+
+route.post('/payments', (req, res, next) => {
+
+    const stripetoken = req.body.stripeToken
+    const stripemoney = Math.round(100 * req.body.stripeMoney)
+
+    stripe.customers.create({
+        source: stripeToken
+    }, (err, customer) => {
+        if (err) next(err)
+
+        return stripe.charges.create({
+            amount: stripeMoney,
+            currency: 'usd',
+            customer: customer.id
+        })
+
+    });
+
+})
 
     module.exports = route
