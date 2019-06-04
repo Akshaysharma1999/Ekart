@@ -18,6 +18,10 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/js/stripe.js"></script>
+
+
 </head>
 
 <body>
@@ -168,8 +172,7 @@
 
                         <div class="container">
                             <div class="row">
-                                <!-- You can make it whatever width you want. I'm making it full width
-             on <= small devices and 4/12 page width on >= medium devices -->
+                               
                                 <div class="col">
 
 
@@ -186,7 +189,7 @@
                                         </div>
                                         <div class="panel-body">
                                             <form role="form" id="payment-form" method="POST"
-                                                action="javascript:void(0);">
+                                                action="/payments">
                                                 <div class="row">
                                                     <div class="col-xs-12">
                                                         <div class="form-group">
@@ -224,7 +227,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <button class="subscribe btn btn-success btn-lg btn-block"
-                                                            type="button">PAY</button>
+                                                            type="submit" >PAY</button>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="display:none;">
@@ -245,16 +248,14 @@
 
                         </div>
                     </div>
+
                 </div>
 
     </center>
 
     <br>
     <br>
-
-
-
-
+   
     {{!-- footer  --}}
     <footer class="py-5 bg-dark">
         <div class="container">

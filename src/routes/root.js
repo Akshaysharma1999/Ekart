@@ -118,6 +118,8 @@ route.post('/remove', (req, res, next) => {
 
 route.post('/payments', (req, res, next) => {
 
+    console.log(req.body)
+
     const stripetoken = req.body.stripeToken
     const stripemoney = Math.round(100 * req.body.stripeMoney)
 
@@ -132,7 +134,9 @@ route.post('/payments', (req, res, next) => {
             customer: customer.id
         })
 
-    });
+    })
+
+    res.redirect('/')
 
 })
 
