@@ -1,44 +1,71 @@
-$(() => {
+// Create a Stripe client.
+console.log('/js/style.js')
+var stripe = Stripe('pk_test_IDOr694fRC0fHyd9dDs1Hpl400bNOkWuZA');
 
-    
-    
-    console.log('ghedfra')
+// Create an instance of Elements.
+var elements = stripe.elements();
 
-    let plus = $('#plus')
-    let minus = $('#minus')
-    let quantity = parseInt($('#quantity').val());
-    let total = $('#total')
-    let base_price = parseFloat($('#base_price').val())
-    let price = $('#price')
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
 
-    plus.click(() => {
-        // console.log("clicked")
-        quantity += 1
-        $('#quantity').val(quantity)
-        // console.log(quantity)
-        total.text(quantity)
-        price.val(base_price * quantity)
-    })
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
 
-    minus.click(() => {
-        // console.log("clicked")
-        quantity -= 1
-        $('#quantity').val(quantity)
-        // console.log(quantity)
-        if (quantity < 1) {
-            total.text(1)
-            quantity = 1
-            $('#quantity').val(1)
-        }
-        else {
-            total.text(quantity)
-        }
-        price.val(base_price * quantity)
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
 
-    })
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
 
-   
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
 
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+});
 
+// Submit the form with the token ID.
+function stripeTokenHandler(token) {
+  // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
 
-})
+  // Submit the form
+  form.submit();
+}

@@ -19,7 +19,7 @@
         crossorigin="anonymous"></script>
 
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="/js/stripe.js"></script>
+
 
 
 </head>
@@ -150,118 +150,29 @@
             <div class="list-group">
                 <div class="list-group-item">
                     <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
-                    <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pay
-                            With Stripe</button></div>
+                    <div>
+                        <a href="/pay">
+                            <button type="button" class="btn btn-primary">Pay With Stripe </button>
+                        </a>
+                    </div>
                 </div>
 
             </div>
         </div>
-
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Pay with Stripe</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-
-                        <div class="container">
-                            <div class="row">
-                               
-                                <div class="col">
-
-
-                                    <!-- CREDIT CARD FORM STARTS HERE -->
-                                    <div class="panel panel-default credit-card-box">
-                                        <div class="panel-heading display-table">
-                                            <div class="row display-tr">
-                                                <h3 class="panel-title display-td">Payment Details</h3>
-                                                <div class="display-td">
-                                                    <img class="img-responsive pull-right"
-                                                        src="http://i76.imgup.net/accepted_c22e0.png">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <form role="form" id="payment-form" method="POST"
-                                                action="/payments">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <div class="form-group">
-                                                            <label for="cardNumber">CARD NUMBER</label>
-                                                            <div class="input-group">
-                                                                <input type="tel" class="form-control" name="cardNumber"
-                                                                    placeholder="Valid Card Number"
-                                                                    autocomplete="cc-number" required autofocus />
-                                                                <span class="input-group-addon"><i
-                                                                        class="fa fa-credit-card"></i></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-7 col-md-7">
-                                                        <div class="form-group">
-                                                            <label for="cardExpiry"><span
-                                                                    class="hidden-xs">EXPIRATION</span>
-                                                                    <span class="visible-xs-inline">EXP</span> DATE
-                                                            </label>
-                                                            <input type="tel" class="form-control" name="cardExpiry"
-                                                                placeholder="MM / YY" autocomplete="cc-exp" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-5 col-md-5 pull-right">
-                                                        <div class="form-group">
-                                                            <label for="cardCVC">CVV CODE</label>
-                                                            <input type="password" class="form-control" name="cardCVC"
-                                                                placeholder="CVV" autocomplete="cc-csc" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                              
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <button class="subscribe btn btn-success btn-lg btn-block"
-                                                            type="submit" >PAY</button>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="display:none;">
-                                                    <div class="col-xs-12">
-                                                        <p class="payment-errors"></p>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    
-
-                                </div>
-
-                            </div>
-
-                            
-
-                        </div>
-                    </div>
-
-                </div>
-
+        
     </center>
 
     <br>
     <br>
-   
+
     {{!-- footer  --}}
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
         </div>
     </footer>
+
+   
 
 </body>
 

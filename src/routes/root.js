@@ -97,26 +97,27 @@ route.post('/remove', (req, res, next) => {
         })
 })
 
-            // Cart.findOne({ user: req.user._id }, (err, cart) => {
+// Cart.findOne({ user: req.user._id }, (err, cart) => {
 
-            //         // console.log(cart)
-            //     // res.redirect('/cart')
-            //      cart.items = cart.items.filter((items)=>{
-            //          return ( items._id != req.body.item )
-            //      })
-            // cart.pull('')
+//         // console.log(cart)
+//     // res.redirect('/cart')
+//      cart.items = cart.items.filter((items)=>{
+//          return ( items._id != req.body.item )
+//      })
+// cart.pull('')
 
-            //     // cart.total = (cart.total - parseFloat(req.body.price))
-            //     cart.save((err) => {
-            //         if (err) return next(err)
+//     // cart.total = (cart.total - parseFloat(req.body.price))
+//     cart.save((err) => {
+//         if (err) return next(err)
 
-            //         res.redirect('/cart')
-            //     })
-            // })
-        // })
+//         res.redirect('/cart')
+//     })
+// })
+// })
 
 
-route.post('/payments', (req, res, next) => {
+route.post('/payment', (req, res, next) => {
+    console.log("whdgfhsf")
 
     console.log(req.body)
 
@@ -140,4 +141,17 @@ route.post('/payments', (req, res, next) => {
 
 })
 
-    module.exports = route
+route.get('/pay', (req, res, next) => {
+    
+    Cart.findOne({ user: req.user._id })
+        .populate('items.item')
+        .exec((err, user_cart) => {
+            if (err) next(err)
+
+            // console.log(user_cart)
+            res.render('stripe_pay', { user_cart: user_cart })
+        })
+   
+})
+
+module.exports = route
