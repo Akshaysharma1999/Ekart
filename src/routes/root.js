@@ -125,24 +125,24 @@ route.post('/payment', (req, res, next) => {
     const stripemoney = Math.round(100 * req.body.stripeMoney)
 
     stripe.customers.create({
-        source: stripeToken
-    }, (err, customer) => {
+        description: 'Customer for jenny.rosen@example.com',
+        source: stripetoken // obtained with Stripe.js
+    }, function (err, customer) {
         if (err) next(err)
 
-        return stripe.charges.create({
-            amount: stripeMoney,
-            currency: 'usd',
-            customer: customer.id
-        })
-
+       return stripe.charges.create({
+            amount: stripemoney,
+            currency: "usd",
+            source: "tok_visa", // obtained with Stripe.js
+            description: "Charge for jenny.rosen@example.com"
+          }, function(err, charge) {
+            res.redirect('/')
+          });
     })
-
-    res.redirect('/')
-
 })
 
 route.get('/pay', (req, res, next) => {
-    
+
     Cart.findOne({ user: req.user._id })
         .populate('items.item')
         .exec((err, user_cart) => {
@@ -151,7 +151,7 @@ route.get('/pay', (req, res, next) => {
             // console.log(user_cart)
             res.render('stripe_pay', { user_cart: user_cart })
         })
-   
+
 })
 
 module.exports = route
