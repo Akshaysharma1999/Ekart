@@ -12,7 +12,12 @@ const User = new Schema({
     password:String, // hash pwd later
     address:String,
     picture:{type:String,default:''},
-    name:{type:String,default:''}
+    name:{type:String,default:''},
+    history:[{
+        date:Date,
+        paid:{type:Number,default:0},
+        item:{type:Schema.Types.ObjectId , ref:'Products'}
+    }]
 })
 
 // User.pre('save',(next)=>{

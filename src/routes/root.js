@@ -77,7 +77,6 @@ route.get('/cart', (req, res, next) => {
 route.post('/remove', (req, res, next) => {
     // res.send('here')
     // console.log(req.body)
-
     Cart.update(
         { user: req.user._id },
         { $pull: { items: { item: req.body.item } } },
@@ -97,30 +96,9 @@ route.post('/remove', (req, res, next) => {
         })
 })
 
-// Cart.findOne({ user: req.user._id }, (err, cart) => {
-
-//         // console.log(cart)
-//     // res.redirect('/cart')
-//      cart.items = cart.items.filter((items)=>{
-//          return ( items._id != req.body.item )
-//      })
-// cart.pull('')
-
-//     // cart.total = (cart.total - parseFloat(req.body.price))
-//     cart.save((err) => {
-//         if (err) return next(err)
-
-//         res.redirect('/cart')
-//     })
-// })
-// })
-
-
 route.post('/payment', (req, res, next) => {
-    console.log("whdgfhsf")
-
-    console.log(req.body)
-
+    // console.log("whdgfhsf")
+    // console.log(req.body)
     const stripetoken = req.body.stripeToken
     const stripemoney = Math.round(100 * req.body.stripeMoney)
 
@@ -130,14 +108,43 @@ route.post('/payment', (req, res, next) => {
     }, function (err, customer) {
         if (err) next(err)
 
-       return stripe.charges.create({
+        return stripe.charges.create({
             amount: stripemoney,
             currency: "usd",
             source: "tok_visa", // obtained with Stripe.js
             description: "Charge for jenny.rosen@example.com"
-          }, function(err, charge) {
-            res.redirect('/')
-          });
+        }, function (err, charge) {
+
+            Cart.findOne({user:req.user._id},(err,cart)=>{
+                if(err) return next(err)
+
+                console.log(cart)
+                User.findOne({_id:req.user._id},(err,user)=>{
+                    if(err) return next(err)
+
+                    if(user)
+                    {
+                        for(let i = 0 ; i<cart.items.length;i++)
+                        {
+                            user.history.push({
+                                item:cart.items[i].item,
+                                paid:cart.items[i].price
+                            })
+                        }
+                    }
+
+                    user.save((err)=>{
+                       if(err) return next(err)
+
+                       Cart.update({user:user._id},{$set:{items:[],total:0}},(err,updated)=>{
+                           if(updated)
+                           res.redirect('/')
+                       })
+                    })
+                })
+            })
+            // res.redirect('/')
+        });
     })
 })
 
