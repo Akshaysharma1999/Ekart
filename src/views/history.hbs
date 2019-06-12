@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -17,12 +20,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-  
+
+
+    <script src="/js/script.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
     <script src="https://js.stripe.com/v3/"></script>
+
 
 </head>
 
 <body>
+
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -37,9 +51,16 @@
                     <li class="nav-item active">
                         <div><a class="nav-link" href="/">Home</a></div>
                     </li>
+
                     <li class="nav-item active">
-                        <div><a class="nav-link" href="/">CART</a></div>
+                        <div>
+                            <a class="nav-link" href="/cart">
+                                CART
+                                {{tq}}
+                            </a>
+                        </div>
                     </li>
+
                     <li class="nav-item active">
 
                         {{#if user.name}}
@@ -82,10 +103,10 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
 
-
                                 {{#each categories}}
                                 <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
                                 {{/each}}
+
 
                             </div>
                         </div>
@@ -101,29 +122,33 @@
 
     {{!-- main --}}
 
-    
-    <div class="container-fluid" style="padding:230px;">
-        <center>
-            <h1>Login</h1>
-            <form action="/login" method="POST">
+    <div class="card-columns">
 
-                <div class="mb-3"><input placeholder="email" type="text" name="email"></div>
-                <div class="mb-3"><input placeholder="password" type="password" name="password"></div>
-                <div class="mb-3"><input class="btn btn-success" type="submit"></div>
+        {{#each user.history}}
+        
+            <div class="card p-3" style="display:inline-block;">
+                <img src="{{this.item.image}}" class="card-img-top" alt="product-image">
+                <div class="card-body">
+                    <h2 class="card-title">{{this.item.name}}</h2>
+                    <p class="card-text">
+                        <h3>Amount:{{this.paid}}</h3>
+                    </p>
+                    <p class="card-text"><small class="text-muted">Date:{{this.date}}</small></p>
+                </div>
+            </div>
 
-            </form>
+        {{/each}}
 
-        </center>
     </div>
 
+    <br>
 
-
-
-    {{!-- footer  --}}
+    <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
         </div>
+        <!-- /.container -->
     </footer>
 
 </body>

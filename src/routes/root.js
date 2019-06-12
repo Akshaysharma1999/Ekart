@@ -115,31 +115,29 @@ route.post('/payment', (req, res, next) => {
             description: "Charge for jenny.rosen@example.com"
         }, function (err, charge) {
 
-            Cart.findOne({user:req.user._id},(err,cart)=>{
-                if(err) return next(err)
+            Cart.findOne({ user: req.user._id }, (err, cart) => {
+                if (err) return next(err)
 
                 console.log(cart)
-                User.findOne({_id:req.user._id},(err,user)=>{
-                    if(err) return next(err)
+                User.findOne({ _id: req.user._id }, (err, user) => {
+                    if (err) return next(err)
 
-                    if(user)
-                    {
-                        for(let i = 0 ; i<cart.items.length;i++)
-                        {
+                    if (user) {
+                        for (let i = 0; i < cart.items.length; i++) {
                             user.history.push({
-                                item:cart.items[i].item,
-                                paid:cart.items[i].price
+                                item: cart.items[i].item,
+                                paid: cart.items[i].price
                             })
                         }
                     }
 
-                    user.save((err)=>{
-                       if(err) return next(err)
+                    user.save((err) => {
+                        if (err) return next(err)
 
-                       Cart.update({user:user._id},{$set:{items:[],total:0}},(err,updated)=>{
-                           if(updated)
-                           res.redirect('/')
-                       })
+                        Cart.update({ user: user._id }, { $set: { items: [], total: 0 } }, (err, updated) => {
+                            if (updated)
+                                res.redirect('/')
+                        })
                     })
                 })
             })
@@ -157,6 +155,17 @@ route.get('/pay', (req, res, next) => {
 
             // console.log(user_cart)
             res.render('stripe_pay', { user_cart: user_cart })
+        })
+
+})
+
+route.get('/history', (req, res, next) => {
+    User.findOne({ _id: req.user._id })
+        .populate('history.item')
+        .exec((err, user) => {
+            if (err) next(err)
+            console.log(user.history)
+            res.render('history', { user: user })
         })
 
 })
