@@ -17,7 +17,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
-    <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 
 
 </head>
@@ -103,12 +103,14 @@
 
 
   {{!-- main --}}
-  <div style="padding:294px;">
-
-
+  <div style="display: flex; justify-content:center; align-items:center; height:80vh;">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="..." alt="Card image cap">
+      <img class="card-img-top img-circle rounded-circle"
+        style="position: absolute; top: -30px;  left: 50%;  margin-left: -40px;  width: 80px !important;  height: 80px;"
+        src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
+        alt="Card image cap">
       <div class="card-body">
+        <br>
         <h1>{{user.name}}</h1>
         <p class="card-text">
           <div class="my-1">

@@ -18,7 +18,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-        <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
 
 </head>
@@ -98,28 +98,29 @@
             </div>
         </div>
     </nav>
-    <br>
-    <br>
+
+    <div style="display: flex; justify-content:center; align-items:center; height:85vh;">
+        <div class="card" style="width: 18rem;">
+
+            <div class="card-body">
+                <center>
+                <h2 class="card-title">SIGNUP</h2>
+                <p class="card-text">
+                    <form action="/signup" method="POST">
 
 
-    <div class="container" style="padding:160px;">
-        <br>
-        <center>
-            <h1>Signup</h1>
-            <form action="/signup" method="POST">
+                        <div class="mb-3 form-group"><input class="form-control" placeholder="name" type="text"
+                                name="name"></div>
+                        <div class="mb-3 form-group"><input class="form-control" placeholder="email" type="text" name="email"></div>
+                        <div class="mb-3 form-group"><input class="form-control" placeholder="password" type="password" name="password"></div>
+                        <div class="mb-3 form-group"><input class="form-control" placeholder="address" type="text" name="address"></div>
+                        <div class="mb-3 form-group"><input class="btn btn-success" type="submit"></div>
 
-
-                <div class="mb-3"><input placeholder="name" type="text" name="name"></div>
-                <div class="mb-3"><input placeholder="email" type="text" name="email"></div>
-                <div class="mb-3"><input placeholder="password" type="password" name="password"></div>
-                <div class="mb-3"><input placeholder="address" type="text" name="address"></div>
-                <div class="mb-3"><input class="btn btn-success" type="submit"></div>
-
-            </form>
-        </center>
-
-
-
+                    </form>
+                </p>
+                </center>
+            </div>
+        </div>
     </div>
 
 

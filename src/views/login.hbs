@@ -17,7 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-  
+
     <script src="https://js.stripe.com/v3/"></script>
 
 </head>
@@ -96,27 +96,45 @@
             </div>
         </div>
     </nav>
-    <br>
-    <br>
 
-    {{!-- main --}}
+   
+        <div style="display: flex; justify-content:center; align-items:center; height:81vh;">
+        <div class="card" style="width: 18rem;">
+            
+            <div class="card-body">
+                <center>
+                <h2 class="card-title">LOGIN</h2>
+                <p class="card-text">
+                    <form action="/login" method="POST">
 
-    
+                        <div class="mb-3 form-group"><input class="form-control" placeholder="email" type="text" name="email"></div>
+                        <div class="mb-3 form-group "><input class="form-control" placeholder="password" type="password" name="password"></div>
+                        <div class="mb-3  "><input class="  btn btn-success" type="submit"></div>
+
+                    </form>
+                </p>
+                </center>
+            </div>
+        </div>
+        </div>
+        <br>
+
+
+
+    {{!-- 
     <div class="container-fluid" style="padding:230px;">
         <center>
             <h1>Login</h1>
             <form action="/login" method="POST">
 
                 <div class="mb-3"><input placeholder="email" type="text" name="email"></div>
-                <div class="mb-3"><input placeholder="password" type="password" name="password"></div>
+                <div class="mb-3 "><input placeholder="password" type="password" name="password"></div>
                 <div class="mb-3"><input class="btn btn-success" type="submit"></div>
 
             </form>
 
         </center>
-    </div>
-
-
+    </div> --}}
 
 
     {{!-- footer  --}}

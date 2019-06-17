@@ -18,7 +18,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-        <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
 
 </head>
@@ -104,19 +104,29 @@
 
 
     {{!-- main  --}}
-    <div class="container-fluid" style="padding:230px;">
-        <center>
-            <h1>Edit Profile</h1>
-            <form action="/edit-profile" method="POST">
+    <div style="display: flex; justify-content:center; align-items:center; height:85vh;">
+        <div class="card" style="width: 18rem;">
 
-                <div><input placeholder="name" value="{{user.name}}" type="text" name="name"></div>
-                <div><input placeholder="address" value="{{user.address}}" type="text" name="address"></div>
-                <div><input type="submit"></div>
+            <div class="card-body">
+                <center>
+                    <h2 class="card-title">Edit Profile</h2>
+                    <p class="card-text">
+                        <form action="/edit-profile" method="POST">
 
-            </form>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="name"
+                                    value="{{user.name}}" type="text" name="name"></div>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="address"
+                                    value="{{user.address}}" type="text" name="address"></div>
+                            <div><input class= "btn btn-success" type="submit"></div>
 
-        </center>
+                        </form>
+                    </p>
+                </center>
+            </div>
+        </div>
     </div>
+
+
 
 
 

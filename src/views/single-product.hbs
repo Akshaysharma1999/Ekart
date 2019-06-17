@@ -18,10 +18,10 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
- <script src="/js/customjs.js"></script>
- 
+  <script src="/js/customjs.js"></script>
 
-   
+
+
 
 </head>
 
@@ -106,53 +106,56 @@
 
 
   {{!-- main --}}
-  <div style="padding:294px;">
-
-
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
+  <div style="display: flex; justify-content:center; align-items:center; height:90vh;">
+    <div class="card mb-3" style="width: 18rem;">
+      <img style="height:180px;" class="card-img-top" src="{{product.image}}" alt="Card image cap">
       <div class="card-body">
-        <h1>{{product.name}}</h1>
+        <h2>{{product.name}}</h2>
         <p class="card-text">
-          <div class="my-1">
-            <h5>Price: </h5> {{product.price}}
-          </div>
-          <div class="my-1">
 
+
+          <div class="mb-3">
+            <h4>Price: {{product.price}} Rs </h4>
           </div>
+
+          <form class=" mb-4" action="/product/{{product._id}}" method="post">
+
+            <div class="mb-2 btn-group" role="group">
+              <h4> Quantity : </h4>
+
+              <input type="hidden" id="quantity" name="quantity" value="1"></input>
+              <div class="mx-2"></div> <button type="button" id="minus" class="btn btn-primary"> -</button>
+              <button type="button" id="total" class=" btn btn">1</button>
+              <button type="button" id="plus" name="plus" class=" btn btn-primary">+</button>
+
+            </div>
+
+            <div class="form-group">
+              <input type="hidden" id="product_id" name="product_id" value="{{product._id}}"></input>
+              <input type="hidden" id="base_price" name="base_price" value="{{product.price}}"></input>
+              <input type="hidden" id="product_name" name="product_name" value="{{product.name}}"></input>
+              <div ><h4>Total:</h4></div>
+              <input class="form-control" type="text" id="price" name="price" value="{{product.price}} Rs"></input>
+            </div>
+
+            {{#if user}}
+            <center>
+              <button type="submit" class="btn btn-success">ADD TO CART</button>
+            </center>
+            {{else}}
+            <button class="btn btn-danger"><a href="/signup" style="color:white;">SIGNUP</a> </button>
+            {{/if}}
+
+          </form>
         </p>
 
       </div>
     </div>
-
-    <form action="/product/{{product._id}}" method="post">
-      qty
-      <div class="mx-2 btn-group" role="group">
-        <input type="hidden" id = "quantity" name="quantity" value="1"></input>
-        <button type="button" id="minus" class="btn btn-secondary">-</button>
-        <button type="button" id ="total" class="btn btn-primary">1</button>
-        <button type="button" id="plus" name="plus" class="btn btn-secondary">+</button>
-      </div>
-      <div>
-        <input type="hidden" id="product_id" name="product_id" value="{{product._id}}"></input>
-        <input type="hidden" id="base_price" name="base_price" value="{{product.price}}"></input>
-        <input type="text" id="product_name" name="product_name" value="{{product.name}}"></input>
-        <input type="text" id="price" name="price" value="{{product.price}}"></input>
-      </div>
-
-      {{#if user}}
-      <button type="submit" class="btn btn-success">ADD To Cart</button>
-      {{else}}
-      <button class="btn btn-danger"><a href="/signup" style="color:white;">Signup first</a> </button>
-      {{/if}}
-
-    </form>
-
   </div>
-  
+
   {{!--  --}}
-  
-  
+
+
 
   {{!-- footer --}}
 

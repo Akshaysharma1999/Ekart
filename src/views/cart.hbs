@@ -103,67 +103,66 @@
 
 
     {{!-- main --}}
+    <div class="container">
+        <div class="card-columns" >
+            {{#each user_cart.items}}
 
-    <div class="container-fluid" style="padding:230px;">
-        {{#each user_cart.items}}
-        <div>
-            <div>
+            <div class="card p-3" >
+                <img class="card-img-top" src="{{this.item.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h1>{{this.item.name}}</h1>
+                    <p class="card-text">
+                        <div class="my-1">
+                            <h5>Price: </h5> {{this.item.price}}
+                            <h5>Qty: </h5> {{this.quantity}}
 
+                            <form action="/remove" method="post">
+                                <input type="hidden" name="item" value="{{this.item.id}}">
+                                <input type="hidden" name="price" value="{{this.price}}">
+                                <input type="hidden" name="quantity" value="{{this.quantity}}">
 
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{this.item.image}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h1>{{this.item.name}}</h1>
-                        <p class="card-text">
-                            <div class="my-1">
-                                <h5>Price: </h5> {{this.item.price}}
-                                <h5>Qty: </h5> {{this.quantity}}
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
 
-                                <form action="/remove" method="post">
-                                    <input type="hidden" name="item" value="{{this.item.id}}">
-                                    <input type="hidden" name="price" value="{{this.price}}">
-                                    <input type="hidden" name="quantity" value="{{this.quantity}}">
+                        </div>
+                        <div class="my-1">
 
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form>
+                        </div>
+                    </p>
 
-                            </div>
-                            <div class="my-1">
-
-                            </div>
-                        </p>
-
-                    </div>
                 </div>
-
-
-
             </div>
+
+            {{/each}}
+
         </div>
-        {{/each}}
+
+        <center>
+            <br>
+            <br>
+            <br>
+            
+            <div class="col-md-3">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
+                        <div>
+                            <a href="/pay">
+                                <button type="button" class="btn btn-primary">Pay With Stripe </button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </center>
+
+        <br>
         <br>
 
+
     </div>
-
-    <center>
-        <div class="col-md-3">
-            <div class="list-group">
-                <div class="list-group-item">
-                    <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
-                    <div>
-                        <a href="/pay">
-                            <button type="button" class="btn btn-primary">Pay With Stripe </button>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-    </center>
-
-    <br>
-    <br>
 
     {{!-- footer  --}}
     <footer class="py-5 bg-dark">
@@ -172,7 +171,7 @@
         </div>
     </footer>
 
-   
+
 
 </body>
 
