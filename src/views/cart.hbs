@@ -28,7 +28,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="/">Ekart</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,10 +38,24 @@
 
                     <li class="nav-item active">
                         <div><a class="nav-link" href="/">Home</a></div>
+
                     </li>
+
                     <li class="nav-item active">
-                        <div><a class="nav-link" href="/">CART</a></div>
+                        <div>
+                            {{#if user}}
+                            <a class="nav-link" href="/cart">
+                                CART
+                                {{tq}}
+                            </a>
+                            {{else}}
+                            <a class="nav-link" href="/login">
+                                CART
+                            </a>
+                            {{/if}}
+                        </div>
                     </li>
+
                     <li class="nav-item active">
 
                         {{#if user.name}}
@@ -51,10 +65,11 @@
                                 {{user.name}}
                             </a>
 
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/logout">Logout</a>
                                 <a class="dropdown-item" href="/profile">Dashboard</a>
-
+                                <a class="dropdown-item" href="/history">History</a>
                             </div>
                         </div>
                         {{else}}
@@ -84,10 +99,10 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
 
-
                                 {{#each categories}}
                                 <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
                                 {{/each}}
+
 
                             </div>
                         </div>
@@ -104,10 +119,10 @@
 
     {{!-- main --}}
     <div class="container">
-        <div class="card-columns" >
+        <div class="card-columns">
             {{#each user_cart.items}}
 
-            <div class="card p-3" >
+            <div class="card p-3">
                 <img class="card-img-top" src="{{this.item.image}}" alt="Card image cap">
                 <div class="card-body">
                     <h1>{{this.item.name}}</h1>
@@ -141,7 +156,7 @@
             <br>
             <br>
             <br>
-            
+
             <div class="col-md-3">
                 <div class="list-group">
                     <div class="list-group-item">
@@ -160,16 +175,23 @@
 
         <br>
         <br>
+        <br>
 
+        <br>
+        <br>
+        <br>
 
     </div>
 
     {{!-- footer  --}}
-    <footer class="py-5 bg-dark">
+
+    <footer class="py-5 bg-dark" style="position: fixed;  left: 0;  bottom: 0;  width: 100%;">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
         </div>
     </footer>
+
+
 
 
 

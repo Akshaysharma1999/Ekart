@@ -4,6 +4,7 @@ const Products = require('../models/product')
 const Cart = require('../models/cart')
 const stripe = require('stripe')('sk_test_MKfrL0egKWHteBeC3tyv6eiG00k1N52GEY')
 
+
 route.get(('/'), (req, res) => {
     res.render('home')
 

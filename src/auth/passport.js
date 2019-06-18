@@ -27,17 +27,13 @@ passport.use(new LocalStrategy({
         if(!user){return done(null,false,{message:"no such user -p"})}
 
         
-        if(user.password !== password)
+        if(!user.comparePassword(password))
         {
             return done(null,false,{message:"wrong password -p "})
         }
 
         return done(null,user)
     })
-}))
-   
-           
- 
-
+}))           
 
 module.exports = passport

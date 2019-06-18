@@ -6,30 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+
 </head>
 
 <body>
-    <div id="yo">{{user_cart.total}}</div>
+    {{!-- <div id="yo">{{user_cart.total}}</div> --}}
+    <div style="display: flex; justify-content:center; align-items:center; height:81vh;">
+        <div class="ui card" style="width: 30rem;">
 
-    <form action="/payment" method="post" id="payment-form">
-    <input type="hidden" name="stripeMoney" value="{{user_cart.total}}">
-        <div class="form-row">
-            <label for="card-element">
-                Credit or debit card
-            </label>
-            <div id="card-element">
-                <!-- A Stripe Element will be inserted here. -->
+            <div class="content">
+                <center>
+                    <h2 class="header">STRIPE PAY</h2>
+                    <p class="description">
+                        <form action="/payment" method="post" id="payment-form">
+                            <input type="hidden" name="stripeMoney" value="{{user_cart.total}}">
+                            <div class="form-row">
+                                <label class="ui sub header"for="card-element">
+                                    Credit or Debit card
+                                </label>
+                                <div id="card-element">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+                            <br>
+                            <div class="extra content"><button style="background-color:#563d7c; color:white;"
+                                    class="ui button">Submit Payment</button></div>
+                        </form>
+                    </p>
+                </center>
             </div>
-
-            <!-- Used to display form errors. -->
-            <div id="card-errors" role="alert"></div>
         </div>
+    </div>
 
-        <button>Submit Payment</button>
-    </form>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="/js/script.js"></script>
     <link rel="stylesheet" href="/css/style.css">
+
 
 </body>
 

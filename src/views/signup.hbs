@@ -25,9 +25,10 @@
 
 <body>
 
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="/">Ekart</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,10 +38,22 @@
 
                     <li class="nav-item active">
                         <div><a class="nav-link" href="/">Home</a></div>
+
                     </li>
 
                     <li class="nav-item active">
-                        <div><a class="nav-link" href="/">CART</a></div>
+                        <div>
+                            {{#if user}}
+                            <a class="nav-link" href="/cart">
+                                CART
+                                {{tq}}
+                            </a>
+                            {{else}}
+                            <a class="nav-link" href="/login">
+                                CART
+                            </a>
+                            {{/if}}
+                        </div>
                     </li>
 
                     <li class="nav-item active">
@@ -52,10 +65,11 @@
                                 {{user.name}}
                             </a>
 
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/logout">Logout</a>
                                 <a class="dropdown-item" href="/profile">Dashboard</a>
-
+                                <a class="dropdown-item" href="/history">History</a>
                             </div>
                         </div>
                         {{else}}
@@ -89,6 +103,7 @@
                                 <a class="dropdown-item" href="/products/{{this._id}}">{{this.name}}</a>
                                 {{/each}}
 
+
                             </div>
                         </div>
 
@@ -99,25 +114,29 @@
         </div>
     </nav>
 
+
     <div style="display: flex; justify-content:center; align-items:center; height:85vh;">
         <div class="card" style="width: 18rem;">
 
             <div class="card-body">
                 <center>
-                <h2 class="card-title">SIGNUP</h2>
-                <p class="card-text">
-                    <form action="/signup" method="POST">
+                    <h2 class="card-title">SIGNUP</h2>
+                    <p class="card-text">
+                        <form action="/signup" method="POST">
 
 
-                        <div class="mb-3 form-group"><input class="form-control" placeholder="name" type="text"
-                                name="name"></div>
-                        <div class="mb-3 form-group"><input class="form-control" placeholder="email" type="text" name="email"></div>
-                        <div class="mb-3 form-group"><input class="form-control" placeholder="password" type="password" name="password"></div>
-                        <div class="mb-3 form-group"><input class="form-control" placeholder="address" type="text" name="address"></div>
-                        <div class="mb-3 form-group"><input class="btn btn-success" type="submit"></div>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="name" type="text"
+                                    name="name"></div>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="email" type="text"
+                                    name="email"></div>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="password"
+                                    type="password" name="password"></div>
+                            <div class="mb-3 form-group"><input class="form-control" placeholder="address" type="text"
+                                    name="address"></div>
+                            <div class="mb-3 form-group"><input class="btn btn-success" type="submit"></div>
 
-                    </form>
-                </p>
+                        </form>
+                    </p>
                 </center>
             </div>
         </div>
@@ -127,7 +146,7 @@
     {{!-- footer  --}}
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
         </div>
     </footer>
 

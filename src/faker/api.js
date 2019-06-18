@@ -4,11 +4,9 @@ const Products = require('../models/product')
 const faker = require('faker')
 
 route.get('/:name', (req, res, next) => {
-
     Categories.findOne({ name: req.params.name }, (err, category) => {
         if (err) return next(err)
     }).then((category) => {
-
         for (i = 0; i <= 30; i++) 
         {
             const product = new Products
@@ -19,10 +17,9 @@ route.get('/:name', (req, res, next) => {
 
             product.save()
         }
-
     })
-
     res.send("succes adding products")
 })
+
 
 module.exports = route

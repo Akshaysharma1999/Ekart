@@ -37,33 +37,28 @@ app.use('/', (req, res, next) => {
 })
 
 app.use('/', (req, res, next) => {
-    
-    res.locals.tq = 0 
-    
-    // if (req.user) {
-    //     let total = 0
-        
-    //     Cart.findOne({ user: req.user._id }, (err, user_cart) => {
-    //         if (err) next(err)
 
-    //         // console.log('akshaycart')
-
-    //         if (user_cart) {
-    //             for (i = 0; i < user_cart.items.length; i++) {
-    //                 total += user_cart.items[i].quantity
-    //             }
-    //             res.locals.tq = total
-    //         }
-    //         else {
-    //             res.locals.tq = 0
-    //         }
-         
-    //          console.log(res.locals.tq)
-    //     })
-    // }
-    next()
-    
-   
+    if (req.user) {
+        let total = 0        
+        Cart.findOne({ user: req.user._id }, (err, user_cart) => {
+           if (err) return next(err)
+            // console.log('akshaycart')
+            if (user_cart) {
+                for (var i = 0; i < user_cart.items.length; i++) {
+                    total += user_cart.items[i].quantity
+                }
+                res.locals.tq = total
+            }
+            else {
+                res.locals.tq = 0
+            }
+         next()
+            //  console.log(res.locals.tq)
+        })
+    }
+    else{
+        next() 
+    }        
 })
 
 
@@ -71,9 +66,6 @@ app.use('/', require('./routes/root'))
 app.use('/', require('./routes/user'))
 app.use('/', require('./routes/admin'))
 app.use('/faker', require('./faker/api'))
-
-
-
 
 mongoose.connect('mongodb+srv://ekart:ekart@cluster0-0t2s9.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }, (err) => {
     if (err) { return err }

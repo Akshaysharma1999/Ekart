@@ -1,47 +1,44 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
+const SALT_WORK_FACTOR = 10;
 
 const User = new Schema({
-    
-    email:{
-        type:String,
-        unique:true,    
-        lowercase:true  
+
+    email: {
+        type: String,
+        unique: true,
+        lowercase: true
     },
-    password:String, // hash pwd later
-    address:String,
-    picture:{type:String,default:''},
-    name:{type:String,default:''},
-    history:[{
-        date:Date,
-        paid:{type:Number,default:0},
-        item:{type:Schema.Types.ObjectId , ref:'Products'}
+    password: String, // hash pwd later
+    address: String,
+    picture: { type: String, default: '' },
+    name: { type: String, default: '' },
+    history: [{
+        date: Date,
+        paid: { type: Number, default: 0 },
+        item: { type: Schema.Types.ObjectId, ref: 'Products' }
     }]
 })
 
-// User.pre('save',(next)=>{
+User.pre('save', function (next) {
+    var user = this;
 
-//     const user = this
-    
-//     bcrypt.hash(user.password, 10 , function(err, hash) {
-//         if(err) return next(err)
+    if (!user.isModified('password')) return next();
 
-//         user.password = hash
-//         next()
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+        if (err) return next(err)
+       
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            if (err) return next(err)          
+            user.password = hash;
+            next()
+        })
+    })
+})
 
-//     })
+User.methods.comparePassword = function (password) {
+   return bcrypt.compareSync(password, this.password)
+}
 
-// })
-
-// User.methods.comparepwd = (password)=>{
-
-//    bcrypt.compareSync(password,this.password,(err,result,next)=>{
-//        if(err) return next(err)
-
-//        return result
-//    })
-// }
-
-
-module.exports = mongoose.model('User',User)
+module.exports = mongoose.model('User', User)

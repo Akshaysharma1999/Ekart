@@ -50,14 +50,21 @@
 
                     <li class="nav-item active">
                         <div><a class="nav-link" href="/">Home</a></div>
+
                     </li>
 
                     <li class="nav-item active">
                         <div>
+                            {{#if user}}
                             <a class="nav-link" href="/cart">
                                 CART
                                 {{tq}}
                             </a>
+                            {{else}}
+                            <a class="nav-link" href="/login">
+                                CART
+                            </a>
+                            {{/if}}
                         </div>
                     </li>
 
@@ -70,10 +77,11 @@
                                 {{user.name}}
                             </a>
 
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="/logout">Logout</a>
                                 <a class="dropdown-item" href="/profile">Dashboard</a>
-
+                                <a class="dropdown-item" href="/history">History</a>
                             </div>
                         </div>
                         {{else}}
@@ -125,17 +133,17 @@
     <div class="card-columns">
 
         {{#each user.history}}
-        
-            <div class="card p-3" style="display:inline-block;">
-                <img src="{{this.item.image}}" class="card-img-top" alt="product-image">
-                <div class="card-body">
-                    <h2 class="card-title">{{this.item.name}}</h2>
-                    <p class="card-text">
-                        <h3>Amount:{{this.paid}}</h3>
-                    </p>
-                    <p class="card-text"><small class="text-muted">Date:{{this.date}}</small></p>
-                </div>
+
+        <div class="card p-3" style="display:inline-block;">
+            <img src="{{this.item.image}}" class="card-img-top" alt="product-image">
+            <div class="card-body">
+                <h2 class="card-title">{{this.item.name}}</h2>
+                <p class="card-text">
+                    <h3>Amount:{{this.paid}}</h3>
+                </p>
+                <p class="card-text"><small class="text-muted">Date:{{this.date}}</small></p>
             </div>
+        </div>
 
         {{/each}}
 
