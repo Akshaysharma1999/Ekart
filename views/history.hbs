@@ -133,11 +133,11 @@
     <br>
     <br>
     <br>
+    
 
     {{!-- main --}}
 
-    <div class="card-columns">
-
+    <div class="card-columns mb-4 container">
         {{#each user.history}}
 
         <div class="card p-3" style="display:inline-block;">
@@ -149,16 +149,20 @@
                 </p>
                 <p class="card-text"><small class="text-muted">Date:{{this.date}}</small></p>
             </div>
+
         </div>
+        <br>
+        <br>
+       
+        
 
-        {{/each}}
-
+        {{/each}}   
+        <br>
+        <br>        
+    
     </div>
 
-    <br>
-    <br>
-    <br>
-    
+<br><br>
 
    <!-- Footer -->
   <footer class="py-5 bg-dark" style="position: fixed;  left: 0;  bottom: 0;  width: 100%;" >
