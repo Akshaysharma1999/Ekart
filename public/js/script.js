@@ -26,6 +26,8 @@ var card = elements.create('card', { style: style });
 card.mount('#card-element');
 
 card.addEventListener('change', function (event) {
+
+  document.getElementById("stripeBtn").disabled = false 
   var displayError = document.getElementById('card-errors');
   if (event.error) {
     displayError.textContent = event.error.message;
@@ -38,12 +40,14 @@ var form = document.getElementById('payment-form');
 form.addEventListener('submit', function (event) {
    event.preventDefault();
 
-  document.getElementById("stripeBtn").disabled = true; 
+  document.getElementById("stripeBtn").disabled = true
 
   stripe.createToken(card).then(function (result) {
     
     if (result.error) {
      
+      document.getElementById("stripeBtn").disabled = false
+
       var errorElement = document.getElementById('card-errors');
       errorElement.textContent = result.error.message;
     } else {       
