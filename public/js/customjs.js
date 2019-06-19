@@ -1,9 +1,7 @@
 
 $(() => {
 
-
-
-    console.log('ghedfra')
+    // console.log('ghedfra')
   
     let plus = $('#plus')
     let minus = $('#minus')
@@ -36,10 +34,6 @@ $(() => {
       }
       price.val(base_price * quantity)
   
-    })
-  
-  
-  
-  
+    })  
   
   }) 

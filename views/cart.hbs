@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ekart</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -29,7 +29,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Ekart</a>
+           <a class="navbar-brand" href="/"><i class="fas fa-shopping-cart"></i> Ekart</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -119,6 +119,8 @@
     </nav>
     <br>
     <br>
+    <br>
+    <br>
 
 
     {{!-- main --}}
@@ -132,14 +134,14 @@
                     <h1>{{this.item.name}}</h1>
                     <p class="card-text">
                         <div class="my-1">
-                            <h5>Price: </h5> {{this.item.price}}
-                            <h5>Qty: </h5> {{this.quantity}}
+                            <h5>Price: {{this.item.price}} </h5> 
+                            <h5>Qty: {{this.quantity}}</h5> 
 
                             <form action="/remove" method="post">
                                 <input type="hidden" name="item" value="{{this.item.id}}">
                                 <input type="hidden" name="price" value="{{this.price}}">
                                 <input type="hidden" name="quantity" value="{{this.quantity}}">
-
+                                       <br>                                 
                                 <button type="submit" class="btn btn-danger">Remove</button>
                             </form>
 
@@ -164,33 +166,34 @@
             <div class="col-md-3">
                 <div class="list-group">
                     <div class="list-group-item">
-                        <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
+                        <h2>Total: <span class="totalPrice">{{user_cart.total}} Rs</span></h2>
                         <div>
                             <a href="/pay">
-                                <button type="button" class="btn btn-primary">Pay With Stripe </button>
+                                <button type="button" class="btn btn-primary">
+                                    Pay With Stripe 
+                               </button>
                             </a>
                         </div>
                     </div>
 
                 </div>
             </div>
-
+                    <br>
+                    <br>
+                    <br>
+                    <br>
         </center>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
     </div>
+      <br>
+        <br>
+        <br>
 
-    {{!-- footer  --}}
+        <br>
+        <br>
+        <br>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-dark" style="position: fixed;  left: 0;  bottom: 0;  width: 100%;">
     <div class="container">
       <p class="mb-4 text-center text-white">
         Copyright &copy; Ekart 2019
