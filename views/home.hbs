@@ -31,7 +31,8 @@
   <link href="css/shop-homepage.css" rel="stylesheet">
 
   <script src="https://js.stripe.com/v3/"></script>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 
@@ -57,12 +58,15 @@
             <div>
               {{#if user}}
               <a class="nav-link" href="/cart">
-                CART
-                {{tq}}
+                <i class="fa" style="font-size:20px">&#xf07a;</i>
+                <span class='badge badge-warning'
+                  style="padding-left: 6px;  padding-right: 6px;border-radius: 9px; vertical-align:top; padding: 1 4px; margin-left:-10px; background:#0984e3;color:white;">{{tq}}
+                </span>
+
               </a>
               {{else}}
               <a class="nav-link" href="/login">
-                CART
+                <i class="fa" style="font-size:20px;">&#xf07a;</i>
               </a>
               {{/if}}
             </div>
@@ -146,19 +150,13 @@
 
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid"
-                src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2066&q=80"
-                alt="First slide">
+              <img class="d-block img-fluid" src="/img1.jpg" alt="First slide" width="900" height="350">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid"
-                src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2066&q=80"
-                alt="Second slide" >
+              <img class="d-block img-fluid" src="/img2.jpg" alt="Second slide" width="900" height="350">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid"
-                src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2066&q=80"
-                alt="Third slide">
+              <img class="d-block img-fluid" src="/img3.jpg" alt="Third slide">
             </div>
           </div>
 
@@ -184,20 +182,13 @@
 
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your
-                  mind.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                tellus ac cursus commodo.</p>
+              <h2 class="featurette-heading">Sale<span class="text-muted"> 70% OFF</span></h2>
+              <p class="lead">The much awaited sale is here. Sale on food , electronics , fashion etc.</p>
             </div>
             <div class="col-md-5">
-              <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                role="img" aria-label="Placeholder: 500x500">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa"
-                  dy=".3em">500x500</text>
-              </svg>
+              <img src="https://image.freepik.com/free-vector/stylish-yellow-sale-banner-design_1017-14559.jpg" alt=""
+                width="300" height="200">
+
             </div>
           </div>
 
@@ -205,20 +196,14 @@
 
           <div class="row featurette">
             <div class="col-md-7 order-md-2">
-              <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for
-                  yourself.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                tellus ac cursus commodo.</p>
+              <h2 class="featurette-heading">Exclusive Offers<span class="text-muted">(New Products Launching)</span>
+              </h2>
+              <p class="lead">Exclusive Offers only uptil this monday . So what are you waiting for grab your offers
+                now.</p>
             </div>
             <div class="col-md-5 order-md-1">
-              <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                role="img" aria-label="Placeholder: 500x500">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa"
-                  dy=".3em">500x500</text>
-              </svg>
+              <img src="https://image.freepik.com/free-vector/sale-banner-template-design-memphis-style_1199-161.jpg"
+                alt="" width="300" height="200">
             </div>
           </div>
 
@@ -226,19 +211,20 @@
 
           <div class="row featurette">
             <div class="col-md-7">
-              <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                tellus ac cursus commodo.</p>
+              <h2 class="featurette-heading">Coming Soon <span class="text-muted">...</span></h2>
+              <p class="lead">Soon Lauching .....</p>
             </div>
             <div class="col-md-5">
-              <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+              <img
+                src="https://o.aolcdn.com/images/dims?quality=85&image_uri=http%3A%2F%2Fo.aolcdn.com%2Fhss%2Fstorage%2Fmidas%2F3990b1bafc3c506a2a109a2211708317%2F206413447%2Fshoppingcart.jpg&client=amp-blogside-v2&signature=7f1c26ad897d0b65a83a8c91ab7017cd96bc07c2"
+                alt="" width="300" height="200">
+              {{!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
                 height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
                 role="img" aria-label="Placeholder: 500x500">
                 <title>Placeholder</title>
                 <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa"
                   dy=".3em">500x500</text>
-              </svg>
+              </svg> --}}
             </div>
           </div>
 
@@ -281,9 +267,17 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
-    </div>
-    <!-- /.container -->
+      <p class="mb-4 text-center text-white">
+        Copyright &copy; Ekart 2019
+      </p>
+      <div class="   text-center text-white">
+        <span class="mx-4"><a href="https://www.facebook.com/profile.php?id=100004479109248" style="color: white;"><i 
+              class="fab fa-facebook-f fa-2x"></i></a></span>
+        <span class="mx-4"><a href="https://www.linkedin.com/in/akshay399/" style="color: white"><i
+              class="fab fa-linkedin-in fa-2x"></a></i></span>
+        <span class="mx-4"><a href="https://github.com/Akshaysharma1999" style="color: white"><i class="fab fa-github fa-2x"></i></a></span>
+      </div>
+      
   </footer>
 
 </body>

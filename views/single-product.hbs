@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,7 +18,10 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
-  <script src="https://js.stripe.com/v3/"></script>
+  <script src="/js/customjs.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 
 
 </head>
@@ -43,12 +47,15 @@
             <div>
               {{#if user}}
               <a class="nav-link" href="/cart">
-                CART
-                {{tq}}
+                <i class="fa" style="font-size:20px">&#xf07a;</i>
+                <span class='badge badge-warning'
+                  style="padding-left: 6px;  padding-right: 6px;border-radius: 9px; vertical-align:top; padding: 1 4px; margin-left:-10px; background:#0984e3;color:white;">{{tq}}
+                </span>
+
               </a>
               {{else}}
               <a class="nav-link" href="/login">
-                CART
+                <i class="fa" style="font-size:20px;">&#xf07a;</i>
               </a>
               {{/if}}
             </div>
@@ -116,36 +123,73 @@
 
 
   {{!-- main --}}
-  <div style="display: flex; justify-content:center; align-items:center; height:80vh;">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top img-circle rounded-circle"
-        style="position: absolute; top: -30px;  left: 50%;  margin-left: -40px;  width: 80px !important;  height: 80px;"
-        src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg"
-        alt="Card image cap">
+  <div style="display: flex; justify-content:center; align-items:center; height:90vh;">
+    <div class="card mb-3" style="width: 18rem;">
+      <img style="height:180px;" class="card-img-top" src="{{product.image}}" alt="Card image cap">
       <div class="card-body">
-        <br>
-        <h1>{{user.name}}</h1>
+        <h2>{{product.name}}</h2>
         <p class="card-text">
-          <div class="my-1">
-            <h5>Email: </h5> {{user.email}}
+
+
+          <div class="mb-3">
+            <h4>Price: {{product.price}} Rs </h4>
           </div>
-          <div class="my-1">
-            <h5>Deliver-to : </h5> {{user.address}}
-          </div>
+
+          <form class=" mb-4" action="/product/{{product._id}}" method="post">
+
+            <div class="mb-2 btn-group" role="group">
+              <h4> Quantity : </h4>
+
+              <input type="hidden" id="quantity" name="quantity" value="1"></input>
+              <div class="mx-2"></div> <button type="button" id="minus" class="btn btn-primary"> -</button>
+              <button type="button" id="total" class=" btn btn">1</button>
+              <button type="button" id="plus" name="plus" class=" btn btn-primary">+</button>
+
+            </div>
+
+            <div class="form-group">
+              <input type="hidden" id="product_id" name="product_id" value="{{product._id}}"></input>
+              <input type="hidden" id="base_price" name="base_price" value="{{product.price}}"></input>
+              <input type="hidden" id="product_name" name="product_name" value="{{product.name}}"></input>
+              <div>
+                <h4>Total:</h4>
+              </div>
+              <input class="form-control" type="text" id="price" name="price" value="{{product.price}} Rs"></input>
+            </div>
+
+            {{#if user}}
+            <center>
+              <button type="submit" class="btn btn-success">ADD TO CART</button>
+            </center>
+            {{else}}
+            <button class="btn btn-danger"><a href="/signup" style="color:white;">SIGNUP</a> </button>
+            {{/if}}
+
+          </form>
         </p>
-        <a href="/edit-profile" class="btn btn-primary">Edit</a>
+
       </div>
     </div>
   </div>
 
+  {{!--  --}}
 
 
-  {{!-- footer --}}
 
+  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
-    </div>
+      <p class="mb-4 text-center text-white">
+        Copyright &copy; Ekart 2019
+      </p>
+      <div class="   text-center text-white">
+        <span class="mx-4"><a href="https://www.facebook.com/profile.php?id=100004479109248" style="color: white;"><i 
+              class="fab fa-facebook-f fa-2x"></i></a></span>
+        <span class="mx-4"><a href="https://www.linkedin.com/in/akshay399/" style="color: white"><i
+              class="fab fa-linkedin-in fa-2x"></a></i></span>
+        <span class="mx-4"><a href="https://github.com/Akshaysharma1999" style="color: white"><i class="fab fa-github fa-2x"></i></a></span>
+      </div>
+      
   </footer>
 
 

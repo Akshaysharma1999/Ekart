@@ -1,11 +1,16 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const session = require('express-session')
+
 const User = require('./models/user')
 const Cart = require('./models/cart')
-const session = require('express-session')
 const passport = require('./auth/passport')
 const categories = require('./models/category')
+const config = require('./config/dbConfig')
+
+
+const port= process.env.PORT || 3000 
 
 app.use('/',express.static(__dirname + "/public"))
 
@@ -67,10 +72,8 @@ app.use('/', require('./routes/user'))
 app.use('/', require('./routes/admin'))
 app.use('/faker', require('./faker/api'))
 
-mongoose.connect('mongodb+srv://ekart:ekart@cluster0-0t2s9.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }, (err) => {
+mongoose.connect(config.mongosecret, { useNewUrlParser: true }, (err) => {
     if (err) { return err }
     console.log('connected to db')
-
-    app.listen('3000', () => { console.log("http://localhost:3000/") })
-
+    app.listen( port , () => { console.log("http://localhost:"+port) })
 })

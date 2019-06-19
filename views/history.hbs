@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -18,13 +21,24 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="/js/script.js"></script>
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <script src="https://js.stripe.com/v3/"></script>
 
 
 </head>
 
 <body>
+
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -45,12 +59,15 @@
                         <div>
                             {{#if user}}
                             <a class="nav-link" href="/cart">
-                                CART
-                                {{tq}}
+                                <i class="fa" style="font-size:20px">&#xf07a;</i>
+                                <span class='badge badge-warning'
+                                    style="padding-left: 6px;  padding-right: 6px;border-radius: 9px; vertical-align:top; padding: 1 4px; margin-left:-10px; background:#0984e3;color:white;">{{tq}}
+                                </span>
+
                             </a>
                             {{else}}
                             <a class="nav-link" href="/login">
-                                CART
+                                <i class="fa" style="font-size:20px;">&#xf07a;</i>
                             </a>
                             {{/if}}
                         </div>
@@ -116,83 +133,44 @@
     <br>
     <br>
 
-
     {{!-- main --}}
-    <div class="container">
-        <div class="card-columns">
-            {{#each user_cart.items}}
 
-            <div class="card p-3">
-                <img class="card-img-top" src="{{this.item.image}}" alt="Card image cap">
-                <div class="card-body">
-                    <h1>{{this.item.name}}</h1>
-                    <p class="card-text">
-                        <div class="my-1">
-                            <h5>Price: </h5> {{this.item.price}}
-                            <h5>Qty: </h5> {{this.quantity}}
+    <div class="card-columns">
 
-                            <form action="/remove" method="post">
-                                <input type="hidden" name="item" value="{{this.item.id}}">
-                                <input type="hidden" name="price" value="{{this.price}}">
-                                <input type="hidden" name="quantity" value="{{this.quantity}}">
+        {{#each user.history}}
 
-                                <button type="submit" class="btn btn-danger">Remove</button>
-                            </form>
-
-                        </div>
-                        <div class="my-1">
-
-                        </div>
-                    </p>
-
-                </div>
+        <div class="card p-3" style="display:inline-block;">
+            <img src="{{this.item.image}}" class="card-img-top" alt="product-image">
+            <div class="card-body">
+                <h2 class="card-title">{{this.item.name}}</h2>
+                <p class="card-text">
+                    <h3>Amount:{{this.paid}}</h3>
+                </p>
+                <p class="card-text"><small class="text-muted">Date:{{this.date}}</small></p>
             </div>
-
-            {{/each}}
-
         </div>
 
-        <center>
-            <br>
-            <br>
-            <br>
-
-            <div class="col-md-3">
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
-                        <div>
-                            <a href="/pay">
-                                <button type="button" class="btn btn-primary">Pay With Stripe </button>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </center>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
+        {{/each}}
 
     </div>
 
-    {{!-- footer  --}}
+    <br>
 
-    <footer class="py-5 bg-dark" style="position: fixed;  left: 0;  bottom: 0;  width: 100%;">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
-        </div>
-    </footer>
-
-
-
+   <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="mb-4 text-center text-white">
+        Copyright &copy; Ekart 2019
+      </p>
+      <div class="   text-center text-white">
+        <span class="mx-4"><a href="https://www.facebook.com/profile.php?id=100004479109248" style="color: white;"><i 
+              class="fab fa-facebook-f fa-2x"></i></a></span>
+        <span class="mx-4"><a href="https://www.linkedin.com/in/akshay399/" style="color: white"><i
+              class="fab fa-linkedin-in fa-2x"></a></i></span>
+        <span class="mx-4"><a href="https://github.com/Akshaysharma1999" style="color: white"><i class="fab fa-github fa-2x"></i></a></span>
+      </div>
+      
+  </footer>
 
 
 </body>

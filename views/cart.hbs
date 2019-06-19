@@ -19,12 +19,13 @@
         crossorigin="anonymous"></script>
 
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 
 </head>
 
 <body>
-
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -45,12 +46,15 @@
                         <div>
                             {{#if user}}
                             <a class="nav-link" href="/cart">
-                                CART
-                                {{tq}}
+                                <i class="fa" style="font-size:20px">&#xf07a;</i>
+                                <span class='badge badge-warning'
+                                    style="padding-left: 6px;  padding-right: 6px;border-radius: 9px; vertical-align:top; padding: 1 4px; margin-left:-10px; background:#0984e3;color:white;">{{tq}}
+                                </span>
+
                             </a>
                             {{else}}
                             <a class="nav-link" href="/login">
-                                CART
+                                <i class="fa" style="font-size:20px;">&#xf07a;</i>
                             </a>
                             {{/if}}
                         </div>
@@ -113,42 +117,98 @@
             </div>
         </div>
     </nav>
+    <br>
+    <br>
 
 
-    <div style="display: flex; justify-content:center; align-items:center; height:85vh;">
-        <div class="card" style="width: 18rem;">
+    {{!-- main --}}
+    <div class="container">
+        <div class="card-columns">
+            {{#each user_cart.items}}
 
-            <div class="card-body">
-                <center>
-                    <h2 class="card-title">SIGNUP</h2>
+            <div class="card p-3">
+                <img class="card-img-top" src="{{this.item.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h1>{{this.item.name}}</h1>
                     <p class="card-text">
-                        <form action="/signup" method="POST">
+                        <div class="my-1">
+                            <h5>Price: </h5> {{this.item.price}}
+                            <h5>Qty: </h5> {{this.quantity}}
 
+                            <form action="/remove" method="post">
+                                <input type="hidden" name="item" value="{{this.item.id}}">
+                                <input type="hidden" name="price" value="{{this.price}}">
+                                <input type="hidden" name="quantity" value="{{this.quantity}}">
 
-                            <div class="mb-3 form-group"><input class="form-control" placeholder="name" type="text"
-                                    name="name"></div>
-                            <div class="mb-3 form-group"><input class="form-control" placeholder="email" type="text"
-                                    name="email"></div>
-                            <div class="mb-3 form-group"><input class="form-control" placeholder="password"
-                                    type="password" name="password"></div>
-                            <div class="mb-3 form-group"><input class="form-control" placeholder="address" type="text"
-                                    name="address"></div>
-                            <div class="mb-3 form-group"><input class="btn btn-success" type="submit"></div>
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
 
-                        </form>
+                        </div>
+                        <div class="my-1">
+
+                        </div>
                     </p>
-                </center>
+
+                </div>
             </div>
+
+            {{/each}}
+
         </div>
+
+        <center>
+            <br>
+            <br>
+            <br>
+
+            <div class="col-md-3">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h2>Total: <span class="totalPrice">{{user_cart.total}}$</span></h2>
+                        <div>
+                            <a href="/pay">
+                                <button type="button" class="btn btn-primary">Pay With Stripe </button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </center>
+
+        <br>
+        <br>
+        <br>
+
+        <br>
+        <br>
+        <br>
+
     </div>
 
-
     {{!-- footer  --}}
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Ekart 2019</p>
-        </div>
-    </footer>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="mb-4 text-center text-white">
+        Copyright &copy; Ekart 2019
+      </p>
+      <div class="   text-center text-white">
+        <span class="mx-4"><a href="https://www.facebook.com/profile.php?id=100004479109248" style="color: white;"><i 
+              class="fab fa-facebook-f fa-2x"></i></a></span>
+        <span class="mx-4"><a href="https://www.linkedin.com/in/akshay399/" style="color: white"><i
+              class="fab fa-linkedin-in fa-2x"></a></i></span>
+        <span class="mx-4"><a href="https://github.com/Akshaysharma1999" style="color: white"><i class="fab fa-github fa-2x"></i></a></span>
+      </div>
+      
+  </footer>
+
+
+
+
+
 
 </body>
 
