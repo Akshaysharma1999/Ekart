@@ -36,17 +36,18 @@ card.addEventListener('change', function (event) {
 
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function (event) {
-  event.preventDefault();
+   event.preventDefault();
 
-  
+  document.getElementById("stripeBtn").disabled = true; 
 
   stripe.createToken(card).then(function (result) {
+    
     if (result.error) {
      
       var errorElement = document.getElementById('card-errors');
       errorElement.textContent = result.error.message;
-    } else {
-     
+    } else {       
+
       stripeTokenHandler(result.token);
     }
   });
