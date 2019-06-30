@@ -8,11 +8,11 @@ It is an ecommerce site with following features.
 * Payment Through Stripe
 * History Of Products Purchased
 
-##Demo
+## Demo
 
 The site is deployed at ```https://akshaysekart.herokuapp.com```
 
-##Built With
+## Built With
 
 * Nodejs(Express)
 * Mongoose Database 
