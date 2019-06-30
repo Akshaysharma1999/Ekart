@@ -1,18 +1,18 @@
-# EKART
+## EKART
 It is an ecommerce site with following features.
 
-*Login/SignUp/Logout
-*Profile Page / Edit Profile
-*Get Products By Categories
-*Cart system
-*Payment Through Stripe
-*History Of Products Purchased
+* Login/SignUp/Logout
+* Profile Page / Edit Profile
+* Get Products By Categories
+* Cart system
+* Payment Through Stripe
+* History Of Products Purchased
 
-```## Demo```
+```Demo```
 
-The site is deployed at https://akshaysekart.herokuapp.com
+The site is deployed at ```https://akshaysekart.herokuapp.com```
 
-```## Built With```
+```Built With```
 
 * Nodejs(Express)
 * Mongoose Database 
@@ -25,5 +25,5 @@ The site is deployed at https://akshaysekart.herokuapp.com
 * Run ```http://localhost:3000``` to view the app
 
 ## APP INFO
-*# Created By : Akshay Sharma
+* Created By : Akshay Sharma
 * Version : 1.0.0
