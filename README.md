@@ -3,7 +3,7 @@ It is an ecommerce site with following features.
 
 * Login/SignUp/Logout
 * Profile Page / Edit Profile
-* Get Products By Categories
+* Get Products By Categories(using Faker.js)
 * Cart system
 * Payment Through Stripe
 * History Of Products Purchased
